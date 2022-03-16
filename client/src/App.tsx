@@ -1,24 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Logo }   from './components/logo/Logo'
+import './App.scss'
+import { TransferFilter } from './components/transfer-filter/TransferFilter';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>      
+      <div className='app-header'>
+        <Logo/>                
+      </div>        
+      <div className='app-container'>
+        <div className='filters-left-container'>
+          <TransferFilter></TransferFilter>
+        </div>
+        <div className='main-container'></div>
+      </div>
     </div>
   );
 }
