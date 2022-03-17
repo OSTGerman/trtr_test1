@@ -30,7 +30,7 @@ export function Logo() {
             <path fill-rule="evenodd" clip-rule="evenodd" d="M57.4823 32.9524L27.6913 50.1523C27.6913 50.1523 26.8123 48.5636 26.0793 47.2939C26.0704 47.2786 26.062 47.263 26.0541 47.2473C27.4056 47.345 30.1269 47.2351 32.7661 45.7114L53.3906 33.8038C55.6822 32.4807 56.2435 30.7674 56.5526 30.0309C57.0312 31.316 57.4823 32.9524 57.4823 32.9524Z" fill="#DEE1E3" />
         </g>
         <defs>
-            <filter id="filter0_d_1_705" x="8" y="23" width="66" height="66" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <filter id="filter0_d_1_705" x="8" y="23" width="66" height="66" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
                 <feFlood flood-opacity="0" result="BackgroundImageFix" />
                 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
                 <feOffset dy="8" />

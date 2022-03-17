@@ -1,0 +1,87 @@
+@import "../../styles/Common.scss";
+
+/* Customize the label (the container) */
+.filter-checkbox-label {
+    display: block;
+    position: relative;
+    padding-left: 50px;
+    margin-bottom: 12px;
+    margin: 0px;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    /* identical to box height, or 154% */
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+
+    color: #4a4a4a;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;    
+}
+
+.filter-checkbox-label:hover {
+    background-color: #F1FCFF;
+}
+
+/* Hide the browser's default checkbox */
+.filter-checkbox-label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.filter-checkbox-checkmark {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    height: 20px;
+    width: 20px;
+    background-color: $color-white;
+    border: 1px solid #9ABBCE;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+
+/* On mouse-over, add a grey background color */
+.filter-checkbox-label:hover input ~ .filter-checkbox-checkmark {
+    // background-color: #ccc;
+}
+
+
+.filter-checkbox-label input:checked ~ .filter-checkbox-checkmark {
+    border: 1px solid #2196f3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.filter-checkbox-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.filter-checkbox-label input:checked ~ .filter-checkbox-checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.filter-checkbox-label .filter-checkbox-checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: 2px solid #2196F3;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
