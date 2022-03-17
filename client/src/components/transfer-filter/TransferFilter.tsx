@@ -9,8 +9,8 @@ export function TransferFilter() {
             <span className='transfer-filter-caption'>КОЛИЧЕСТВО ПЕРЕСАДОК</span>
             <FilterCheckbox label='Без пересадок' value={true} onChange={(a) => {/* TODO */}}/>
             <FilterCheckbox label='1 пересадка' value={true} onChange={(a) => {/* TODO */}}/>
-            <FilterCheckbox label='2 пересадки' value={true} onChange={(a) => {/* TODO */}}/>
-            <FilterCheckbox label='3 пересадки' value={true} onChange={(a) => {/* TODO */}}/>
+            <FilterCheckbox label='2 пересадки' value={false} onChange={(a) => {/* TODO */}}/>
+            <FilterCheckbox label='3 пересадки' value={false} onChange={(a) => {/* TODO */}}/>
         </div>
     );
 }

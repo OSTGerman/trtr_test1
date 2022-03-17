@@ -1,0 +1,86 @@
+@import "../../styles/Common.scss";
+
+/* Customize the label (the container) */
+.filter-radio-label {
+    display: block;
+    position: relative;
+    padding-left: 50px;
+    margin-bottom: 12px;
+    margin: 0px;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    /* identical to box height, or 154% */
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+
+    color: #4a4a4a;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;    
+}
+
+.filter-radio-label:hover {
+    background-color: #F1FCFF;
+}
+
+/* Hide the browser's default radio */
+.filter-radio-label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom radio */
+.filter-radio-checkmark {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    height: 20px;
+    width: 20px;
+    background-color: $color-white;
+    border: 1px solid #9ABBCE;
+    box-sizing: border-box;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.filter-radio-label:hover input ~ .filter-radio-checkmark {
+    // background-color: #ccc;
+}
+
+
+.filter-radio-label input:checked ~ .filter-radio-checkmark {
+    border: 1px solid #2196f3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.filter-radio-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.filter-radio-label input:checked ~ .filter-radio-checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.filter-radio-label .filter-radio-checkmark:after {
+    left: 3px;
+    top: 3px;
+    width: 12px;
+    height: 12px;
+    // border: 2px solid #2196F3;
+    // border-width: 0 2px 2px 0;
+    border-radius: 50%;
+    background-color: #2196F3;;
+}
