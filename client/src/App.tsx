@@ -1,38 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import { Logo }   from './components/logo/Logo'
+import { Logo } from './components/logo/Logo'
 import './App.scss'
 import { TransferFilter } from './components/transfer-filter/TransferFilter';
 import { CompanyFilter } from './components/company-filter/CompanyFilter';
 import { TicketsRibbon } from './components/tickets-ribbon/TicketsRibbon';
-import { getTickets } from './data/DataProvider';
+import { AviasalesTestDataProvider } from './data/AviasalesTestDataProvider';
 import { Ticket as TicketModel } from './models/Ticket';
+import { DataStore } from './data/DataStore';
 
 function App() {
 
-  const [data, setData] = useState({ tickets: new Array<TicketModel[]>() });
+  const [tickets, setTickets] = useState(new Array<TicketModel>());
+  const [companies, setCompanies] = useState(new Array<string>());
+
+  var dataStore: DataStore;
 
   useEffect(() => {
-    const fetchData = async () => {
-      const tickets = await getTickets();
-      setData({tickets: tickets});      
-      alert(tickets);
-    }    
-    fetchData();
+    dataStore = new DataStore(new AviasalesTestDataProvider(), () => {
+      setCompanies(dataStore.GetCompanies());
+      setTickets(dataStore.GetFilteredData([], null));      
+    });
   }, []);
 
   return (
-    <div className='app'>      
+    <div className='app'>
       <div className='app-header'>
-        <Logo/>                
-      </div>        
+        <Logo />
+      </div>
       <div className='app-container'>
         <div className='filters-left-container'>
           <TransferFilter></TransferFilter>
-          <div style={{height: "20px" /* TODO! this is ugly */}}></div>
-          <CompanyFilter></CompanyFilter>
+          <div style={{ height: "20px" /* TODO! this is ugly */ }}></div>
+          <CompanyFilter companies={companies} onCompanySelected={company => setTickets(dataStore.GetFilteredData([], company))}></CompanyFilter>
         </div>
         <div className='main-container'>
-          <TicketsRibbon tickets={data.tickets}></TicketsRibbon>
+          <TicketsRibbon tickets={tickets}></TicketsRibbon>
         </div>
       </div>
     </div>

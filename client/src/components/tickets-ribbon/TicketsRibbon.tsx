@@ -7,16 +7,13 @@ import { Ticket } from '../ticket/Ticket';
 
 export function TicketsRibbon({ tickets }: { tickets: TicketModel[] }) {
 
-    return (
-        <div className='tickets-ribbon-container'>
-            {
-                tickets && tickets.map(ticket => {
-                    <>
-                        <div>{ticket.companyId}</div>
-                        <Ticket ticket={ticket}></Ticket>
-                    </>
-                })
+    return (        
+        <div className='tickets-ribbon-container'>            
+            {                
+                tickets && tickets.map(ticket =>                                       
+                        <Ticket ticket={ticket}></Ticket>                    
+                )
             }
-        </div>
+        </div>        
     );
 }

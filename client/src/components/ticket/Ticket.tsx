@@ -13,7 +13,7 @@ export function Ticket({ticket}: {ticket: TicketModel}) {
             </div>
             <div className='ticket-segments-container'>
                 {
-                    ticket.segments && ticket.segments.map(segment => {
+                    ticket.segments && ticket.segments.map(segment =>
                         <div className='ticket-segment-container'>
                             <div className='ticket-segment-column'>
                                 <span className='ticket-segment-caption'>{segment.origin} — {segment.destination}</span>
@@ -28,7 +28,7 @@ export function Ticket({ticket}: {ticket: TicketModel}) {
                                 <span className='ticket-segment-value'>{segment.stops.join(', ')}</span>
                             </div>
                         </div>
-                    })
+                    )
                 }
             </div>
         </div>

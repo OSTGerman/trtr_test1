@@ -8,4 +8,6 @@ export interface Ticket {
     companyId: string;
     // Массив идентификаторов перелётов
     segments: Segment[];
+    
+    carrier: string;
 }
