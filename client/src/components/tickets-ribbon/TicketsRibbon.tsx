@@ -11,7 +11,7 @@ export function TicketsRibbon({ tickets }: { tickets: TicketModel[] }) {
         <div className='tickets-ribbon-container'>            
             {                
                 tickets && tickets.map(ticket =>                                       
-                        <Ticket ticket={ticket}></Ticket>                    
+                        <Ticket key={ticket.id} ticket={ticket}></Ticket>                    
                 )
             }
         </div>        

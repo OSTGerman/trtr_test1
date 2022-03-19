@@ -9,6 +9,7 @@ export function Ticket({ticket}: {ticket: TicketModel}) {
         <div className='ticket-container'>
             <div className='ticket-header'>
                 <span className='ticket-price'>{ticket.price} Р</span>
+                <span className='ticket-price'>{ticket.carrier} Р</span>
                 <img className='ticket-company-img'></img>
             </div>
             <div className='ticket-segments-container'>

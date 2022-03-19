@@ -1,0 +1,45 @@
+@import "../../styles/Common.scss";
+
+.ticket-container {    
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    background-color: $color-white;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.ticket-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ticket-segments-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.ticket-segment-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.ticket-price {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 24px;
+    /* identical to box height, or 100% */
+
+    display: flex;
+    align-items: center;
+
+    /* Primary Colors/Primary 500 */
+
+    color: #2196f3;
+}
+
+.ticket-company-img {
+    margin-left: auto;
+}

@@ -15,24 +15,6 @@ async function fetchNext(searchId: string): Promise<any> {
     }    
 }
 
-export async function getTickets(onNextDataPortion: (ticketPortion: Ticket[]) => void) {
-    let response = await fetch(`https://front-test.beta.aviasales.ru/search`);
-    if (response.status != 200) {
-        console.log("Error: ", response.statusText);
-        throw new Error(response.statusText);
-    }
-    const newSearch = await response.json();
-    let stop = false;
-    while(!stop) {
-        const response = await fetchNext(newSearch.searchId);
-        await new Promise(r => setTimeout(r, 200)); // JFT
-        stop = response.stop;
-        if (response.tickets && response.tickets.length > 0) {
-            onNextDataPortion(response.tickets);
-        }
-    } 
-}
-
 export class AviasalesTestDataProvider {
     getTickets = async (onNextDataPortion: (ticketPortion: Ticket[]) => void) => {
         let response = await fetch(`https://front-test.beta.aviasales.ru/search`);
