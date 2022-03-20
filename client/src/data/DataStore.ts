@@ -1,11 +1,11 @@
 import { Company } from "../models/Company";
 import { Ticket } from "../models/Ticket";
-import { IDataProvider } from "./IDataProvider";
+import { DataProviderBase } from "./DataProviderBase";
 import { v4 as uuid } from 'uuid';
 
 export class DataStore {
 
-    constructor(provider: IDataProvider, onNewDataAvailable: () => void) {
+    constructor(provider: DataProviderBase, onNewDataAvailable: () => void) {
         this.provider = provider;
         this.onNewDataAvailable = onNewDataAvailable;
         provider.getTickets(ticketPortion => {
@@ -14,7 +14,8 @@ export class DataStore {
                 if (!this.companies.has(ticket.carrier)) {
                     this.companies.set(ticket.carrier, {
                         id: uuid(),
-                        name: ticket.carrier
+                        name: ticket.carrier,
+                        imageUrl: provider.getCarrierImageUrl(ticket.carrier)
                     });
                 }
                 const comp = this.companies.get(ticket.carrier);
@@ -29,12 +30,12 @@ export class DataStore {
 
     private data: Ticket[] = [];
     private companies: Map<string, Company> = new Map<string, Company>();
-    private provider: IDataProvider;
+    private provider: DataProviderBase;
     private onNewDataAvailable: () => void;
 
-    public GetFilteredData(transfers: number[], company: Company | null): Ticket[] {
+    public GetFilteredData(transfers: number[], companyId: string | null): Ticket[] {        
         const res = this.data.filter((ticket) => {
-            return !company || ticket.company.id === company.id;
+            return !companyId || ticket.company.id === companyId;
         });
         return res.slice(0, 5);
     }

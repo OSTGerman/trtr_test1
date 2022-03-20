@@ -4,12 +4,12 @@ import { FilterRadio } from '../filter-radio/FilterRadio';
 import './CompanyFilter.scss'
 
 
-export function CompanyFilter({companies, onCompanySelected}: {companies: Company[], onCompanySelected: (company: Company|null) => void}) {
+export function CompanyFilter({companies, onCompanySelected}: {companies: Company[], onCompanySelected: (companyId: string|null) => void}) {
     const [checked, setChecked] = useState<string|null>(null);
 
-    const companySelected = (company: Company|null) => {
-        setChecked(company && company.id);
-        onCompanySelected(company);
+    const companySelected = (companyId: string|null) => {
+        setChecked(companyId);
+        onCompanySelected(companyId);
     }
 
     return (
@@ -18,7 +18,7 @@ export function CompanyFilter({companies, onCompanySelected}: {companies: Compan
             <FilterRadio label='Все' key="" value={checked === null} onClick={() => companySelected(null)} />
             {
                 companies.map(company => 
-                    <FilterRadio label={company.name} key={company.id} value={checked === company.id} onClick={() => companySelected(company)} />)
+                    <FilterRadio label={company.name} key={company.id} value={checked === company.id} onClick={() => companySelected(company.id)} />)
             }            
         </div>
     );

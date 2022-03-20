@@ -1,4 +1,6 @@
+import { Url } from "url";
 import { Ticket } from "../models/Ticket";
+import { DataProviderBase } from "./DataProviderBase";
 
 async function fetchNext(searchId: string): Promise<any> {
     let response = await fetch(`https://front-test.beta.aviasales.ru/tickets?searchId=${searchId}`);
@@ -15,7 +17,9 @@ async function fetchNext(searchId: string): Promise<any> {
     }    
 }
 
-export class AviasalesTestDataProvider {
+export class AviasalesTestDataProvider extends DataProviderBase {
+
+
     getTickets = async (onNextDataPortion: (ticketPortion: Ticket[]) => void) => {
         let response = await fetch(`https://front-test.beta.aviasales.ru/search`);
         if (response.status != 200) {
@@ -28,9 +32,13 @@ export class AviasalesTestDataProvider {
             const response = await fetchNext(newSearch.searchId);
             await new Promise(r => setTimeout(r, 200)); // JFT
             stop = response.stop;
-            if (response.tickets && response.tickets.length > 0) {
+            if (response.tickets && response.tickets.length > 0) {                
                 onNextDataPortion(response.tickets);
             }
         } 
+    }
+
+    getCarrierImageUrl = (carrierCode: string) => {
+        return `//pics.avs.io/99/36/${carrierCode}.png`;
     }
 }
