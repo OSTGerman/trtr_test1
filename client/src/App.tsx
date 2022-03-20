@@ -16,6 +16,7 @@ function App() {
   const [tickets, setTickets] = useState(new Array<TicketModel>());
   const [companies, setCompanies] = useState(new Array<Company>());
   const [companyId, setCompanyId] = useState<string|null>(null);
+  const [selectedTransfers, setSelectedTransfers] = useState([true, false, false, false]);
 
 
   useEffect(() => {
@@ -23,9 +24,9 @@ function App() {
       dataStore = new DataStore(new AviasalesTestDataProvider(), () => {        
         setCompanies(dataStore.GetCompanies());        
       })
-    }    
-    setTickets(dataStore.GetFilteredData([], companyId));
-  }, [companyId, companies]);
+    }        
+    setTickets(dataStore.GetFilteredData(selectedTransfers, companyId));
+  }, [companyId, companies, selectedTransfers]);
 
   return (
     <div className='app'>
@@ -34,8 +35,7 @@ function App() {
       </div>
       <div className='app-container'>
         <div className='filters-left-container'>
-          <TransferFilter></TransferFilter>
-          <div style={{ height: "20px" /* TODO! this is ugly */ }}></div>
+          <TransferFilter possibleTransfers={selectedTransfers} onTransfersChanged={transfers => { setSelectedTransfers(Array.from(transfers));}}></TransferFilter>          
           <CompanyFilter companies={companies} onCompanySelected={companyId => {setCompanyId(companyId);}}></CompanyFilter>
         </div>
         <div className='main-container'>

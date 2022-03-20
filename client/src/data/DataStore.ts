@@ -33,9 +33,14 @@ export class DataStore {
     private provider: DataProviderBase;
     private onNewDataAvailable: () => void;
 
-    public GetFilteredData(transfers: number[], companyId: string | null): Ticket[] {        
+    public GetFilteredData(transfers: boolean[], companyId: string | null): Ticket[] {        
         const res = this.data.filter((ticket) => {
-            return !companyId || ticket.company.id === companyId;
+            const companyOk = !companyId || ticket.company.id === companyId;
+            let transfersOk = true;
+            ticket.segments.forEach(segment => {
+                transfersOk = transfersOk && transfers[segment.stops.length];                
+            });
+            return  companyOk && transfersOk;
         });
         return res.slice(0, 5);
     }

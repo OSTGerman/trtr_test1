@@ -29,8 +29,8 @@ export function Ticket({ticket}: {ticket: TicketModel}) {
             </div>
             <div className='ticket-segments-container'>
                 {
-                    ticket.segments && ticket.segments.map(segment =>
-                        <div className='ticket-segment-container'>
+                    ticket.segments && ticket.segments.map((segment, idx) =>
+                        <div className='ticket-segment-container' key={idx}>
                             <div className='ticket-segment-column'>
                                 <span className='ticket-segment-caption'>{segment.origin} — {segment.destination}</span>
                                 <span className='ticket-segment-value'>{getSegmentStartStopStr(segment)}</span>
