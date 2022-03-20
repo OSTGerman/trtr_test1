@@ -18,7 +18,7 @@ function App() {
   const [tickets, setTickets] = useState(new Array<TicketModel>());
   const [companies, setCompanies] = useState(new Array<Company>());
   const [companyId, setCompanyId] = useState<string|null>(null);
-  const [selectedTransfers, setSelectedTransfers] = useState([true, false, false, false]);
+  const [selectedTransfers, setSelectedTransfers] = useState([true, true, false, false]);
   const [quality, setQuality] = useState<QualityFilterValues>('CHEAPEST');
 
 

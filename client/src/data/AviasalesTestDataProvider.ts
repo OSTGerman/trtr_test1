@@ -1,4 +1,3 @@
-import { Url } from "url";
 import { Ticket } from "../models/Ticket";
 import { DataProviderBase } from "./DataProviderBase";
 
