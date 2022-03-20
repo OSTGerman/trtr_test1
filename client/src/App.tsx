@@ -8,6 +8,8 @@ import { AviasalesTestDataProvider } from './data/AviasalesTestDataProvider';
 import { Ticket as TicketModel } from './models/Ticket';
 import { DataStore } from './data/DataStore';
 import { Company } from './models/Company';
+import { QualityFilter } from './components/quality-filter/QualityFilter';
+import { QualityFilterValues } from './models/QualityFilterValues';
 
 let dataStore: DataStore;
 
@@ -17,6 +19,7 @@ function App() {
   const [companies, setCompanies] = useState(new Array<Company>());
   const [companyId, setCompanyId] = useState<string|null>(null);
   const [selectedTransfers, setSelectedTransfers] = useState([true, false, false, false]);
+  const [quality, setQuality] = useState<QualityFilterValues>('CHEAPEST');
 
 
   useEffect(() => {
@@ -25,8 +28,8 @@ function App() {
         setCompanies(dataStore.GetCompanies());        
       })
     }        
-    setTickets(dataStore.GetFilteredData(selectedTransfers, companyId));
-  }, [companyId, companies, selectedTransfers]);
+    setTickets(dataStore.GetFilteredData(selectedTransfers, companyId, quality));
+  }, [companyId, companies, selectedTransfers, quality]);
 
   return (
     <div className='app'>
@@ -39,6 +42,7 @@ function App() {
           <CompanyFilter companies={companies} onCompanySelected={companyId => {setCompanyId(companyId);}}></CompanyFilter>
         </div>
         <div className='main-container'>
+          <QualityFilter initialQuality='CHEAPEST' onFilterChanged={(quality) => {setQuality(quality);}}></QualityFilter>
           <TicketsRibbon tickets={tickets}></TicketsRibbon>
         </div>
       </div>

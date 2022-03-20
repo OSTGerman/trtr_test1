@@ -29,11 +29,11 @@ export class AviasalesTestDataProvider extends DataProviderBase {
         const newSearch = await response.json();
         let stop = false;
         while(!stop) {
-            const response = await fetchNext(newSearch.searchId);
-            await new Promise(r => setTimeout(r, 200)); // JFT
+            const response = await fetchNext(newSearch.searchId);            
             stop = response.stop;
             if (response.tickets && response.tickets.length > 0) {                
                 onNextDataPortion(response.tickets);
+                await new Promise(r => setTimeout(r, 500)); // JFT
             }
         } 
     }

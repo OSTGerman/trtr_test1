@@ -1,0 +1,55 @@
+@import "../../styles/Common.scss";
+
+.quality-filter-button {
+    flex: 1 1 0px;
+    height: 50px;
+    line-height: 50px;
+    /* Primary Colors/White */
+
+    background: $color-white;
+    /* Secondary Colors/Border */
+
+    border: 1px solid #dfe5ec;
+    box-sizing: border-box;    
+    cursor: pointer;
+    display: flex;
+}
+
+.quality-filter-button:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-right: none;
+}
+
+.quality-filter-button:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left: none;
+}
+
+.quality-filter-button:not(.quality-filter-button__active):hover {
+    background: #F1FCFF;    
+}
+
+.quality-filter-button__active {
+    background: #2196F3;
+    border: 1px solid #2196F3;
+}
+
+.quality-filter-button__active > .quality-filter-label {
+    color: $color-white;
+}
+
+.quality-filter-label {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;    
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+
+    color: #4a4a4a;
+
+    margin: auto;
+
+    user-select: none;
+}

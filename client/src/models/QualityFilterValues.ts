@@ -1,0 +1,1 @@
+export type QualityFilterValues = 'CHEAPEST' | 'FASTEST' | 'OPTIMAL';
