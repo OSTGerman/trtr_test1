@@ -58,10 +58,7 @@ export class DataStore {
     public GetFilteredData(transfers: boolean[], companyId: string | null, quality: QualityFilterValues): Ticket[] {        
         const res = this.data.filter((ticket) => {
             const companyOk = !companyId || ticket.company.id === companyId;
-            let transfersOk = true;
-            ticket.segments.forEach(segment => {
-                transfersOk = transfersOk && transfers[segment.stops.length];                
-            });
+            const transfersOk = ticket.segments.every(segment => transfers[segment.stops.length]);
             return  companyOk && transfersOk;
         })
         .sort((a, b) => this.sortTickets(a, b, quality));
