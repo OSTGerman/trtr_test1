@@ -1,4 +1,3 @@
-import { type } from '@testing-library/user-event/dist/type';
 import React, { useState } from 'react';
 import { QualityFilterValues } from '../../models/QualityFilterValues';
 import { QualityFilterButton } from '../quality-filter-button/QualityFilterButton';

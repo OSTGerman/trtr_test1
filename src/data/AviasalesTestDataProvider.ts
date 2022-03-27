@@ -8,7 +8,7 @@ async function fetchNext(searchId: string): Promise<any> {
         console.log("Correctable error: ", await response.text());
         // Server error or timeout
         return await fetchNext(searchId);
-    } else if (response.status != 200) {
+    } else if (response.status !== 200) {
         throw new Error(response.statusText);
     } else {        
         const res = await response.json();     
@@ -21,7 +21,7 @@ export class AviasalesTestDataProvider extends DataProviderBase {
 
     getTickets = async (onNextDataPortion: (ticketPortion: Ticket[]) => void) => {
         let response = await fetch(`https://front-test.beta.aviasales.ru/search`);
-        if (response.status != 200) {
+        if (response.status !== 200) {
             console.log("Error: ", response.statusText);
             throw new Error(response.statusText);
         }

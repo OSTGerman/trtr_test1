@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './FilterRadio.scss';
 
 export function FilterRadio({ label, value, onClick }: { label: string, value: boolean, onClick: () => void }) {

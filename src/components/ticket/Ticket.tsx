@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Ticket.scss';
 import { Ticket as TicketModel } from '../../models/Ticket';
 import { getDurationStr, getSegmentStartStopStr } from '../../util/formatting_utils';
@@ -25,7 +25,7 @@ export function Ticket({ticket}: {ticket: TicketModel}) {
         <div className='ticket-container'>
             <div className='ticket-header'>
                 <span className='ticket-price'>{formatter.format(ticket.price)}</span>                
-                <img className='ticket-company-img' src={ticket.company.imageUrl}></img>
+                <img className='ticket-company-img' alt={ticket.company.name} src={ticket.company.imageUrl}></img>
             </div>
             <div className='ticket-segments-container'>
                 {

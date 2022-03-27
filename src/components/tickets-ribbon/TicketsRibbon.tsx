@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { FilterRadio } from '../filter-radio/FilterRadio';
+import React from 'react';
 import './TicketsRibbon.scss';
 import { Ticket as TicketModel } from '../../models/Ticket';
 import { Ticket } from '../ticket/Ticket';

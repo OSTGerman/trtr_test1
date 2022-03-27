@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect} from 'react';
 import { Logo } from './components/logo/Logo'
 import './App.scss'
 import { TransferFilter } from './components/transfer-filter/TransferFilter';

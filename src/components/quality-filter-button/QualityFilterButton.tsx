@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './QualityFilterButton.scss';
 
 export function QualityFilterButton({ label, isActive, onClick }: { label: string, isActive: boolean, onClick: () => void }) {    
