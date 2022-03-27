@@ -15,8 +15,8 @@ let dataStore: DataStore;
 
 function App() {
 
-  const [tickets, setTickets] = useState(new Array<TicketModel>());
-  const [companies, setCompanies] = useState(new Array<Company>());
+  const [tickets, setTickets] = useState<TicketModel[]>([]);
+  const [companies, setCompanies] = useState<Company[]>([]);
   const [companyId, setCompanyId] = useState<string|null>(null);
   const [selectedTransfers, setSelectedTransfers] = useState([true, true, false, false]);
   const [quality, setQuality] = useState<QualityFilterValues>('CHEAPEST');
@@ -38,7 +38,7 @@ function App() {
       </div>
       <div className='app-container'>
         <div className='filters-left-container'>
-          <TransferFilter possibleTransfers={selectedTransfers} onTransfersChanged={transfers => { setSelectedTransfers(Array.from(transfers));}}></TransferFilter>          
+          <TransferFilter possibleTransfers={selectedTransfers} onTransfersChanged={transfers => { setSelectedTransfers([...transfers]);}}></TransferFilter>          
           <CompanyFilter companies={companies} onCompanySelected={companyId => {setCompanyId(companyId);}}></CompanyFilter>
         </div>
         <div className='main-container'>
