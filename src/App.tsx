@@ -24,7 +24,8 @@ function App() {
 
   useEffect(() => {
     if (!dataStore) {
-      dataStore = new DataStore(new AviasalesTestDataProvider(), () => {        
+      dataStore = new DataStore(new AviasalesTestDataProvider());
+      dataStore.fetchData(() => {        
         setCompanies(dataStore.GetCompanies());        
       })
     }        

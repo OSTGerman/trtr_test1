@@ -6,15 +6,21 @@ import { QualityFilterValues } from "../models/QualityFilterValues";
 
 export class DataStore {
 
-    constructor(provider: DataProviderBase, onNewDataAvailable: () => void) {
-        provider.getTickets(ticketPortion => {
+    private _provider: DataProviderBase;
+
+    constructor(provider: DataProviderBase) {
+        this._provider = provider;
+    }
+    
+    fetchData(onNewDataAvailable: () => void) {
+        this._provider.getTickets(ticketPortion => {
             this.data = this.data.concat(ticketPortion);
             ticketPortion.forEach(ticket => {
                 if (!this.companies.has(ticket.carrier)) {
                     this.companies.set(ticket.carrier, {
                         id: uuid(),
                         name: ticket.carrier,
-                        imageUrl: provider.getCarrierImageUrl(ticket.carrier)
+                        imageUrl: this._provider.getCarrierImageUrl(ticket.carrier)
                     });
                 }
                 const comp = this.companies.get(ticket.carrier);
