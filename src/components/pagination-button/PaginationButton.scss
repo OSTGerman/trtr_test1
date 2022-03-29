@@ -1,0 +1,24 @@
+@import "../../styles/Common.scss";
+
+.pagination-button {
+    background: #2196F3;
+    border-radius: 5px;
+    box-sizing: border-box;    
+    cursor: pointer;
+    display: flex;
+    height: 50px;
+    line-height: 50px;    
+}
+
+.pagination-button-label {
+    font-style: normal;    
+    font-size: 12px;    
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+
+    color: $color-white;    
+
+    margin: auto;
+
+    user-select: none;
+}

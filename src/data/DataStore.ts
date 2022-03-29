@@ -3,6 +3,7 @@ import { Ticket } from "../models/Ticket";
 import { DataProviderBase } from "./DataProviderBase";
 import { v4 as uuid } from 'uuid';
 import { QualityFilterValues } from "../models/QualityFilterValues";
+import { TicketResultModel } from "../models/TicketResultModel";
 
 export class DataStore {
 
@@ -66,14 +67,20 @@ export class DataStore {
         }
     }
 
-    public GetFilteredData(transfers: boolean[], companyId: string | null, quality: QualityFilterValues): Ticket[] {        
-        const res = this.data.filter((ticket) => {
+    public GetFilteredData(transfers: boolean[], companyId: string | null, quality: QualityFilterValues, ticketsFrom: number, ticketsCount: number): TicketResultModel {        
+        const tickets = this.data.filter((ticket) => {
             const companyOk = !companyId || ticket.company.id === companyId;
             const transfersOk = ticket.segments.every(segment => transfers[segment.stops.length]);
             return  companyOk && transfersOk;
         })
         .sort((a, b) => this.sortTickets(a, b, quality));
-        return res.slice(0, 5);
+        const ticketsPage = tickets.slice(ticketsFrom, ticketsFrom + ticketsCount);
+        return {
+            tickets: ticketsPage,
+            pageStart: ticketsFrom,
+            pageCount: ticketsPage.length,
+            totalCount: tickets.length
+        }        
     }
 
     public GetCompanies(): Company[] {
