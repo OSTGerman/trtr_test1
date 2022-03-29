@@ -25,7 +25,7 @@ export function Ticket({ticket}: {ticket: TicketModel}) {
         <div className='ticket-container'>
             <div className='ticket-header'>
                 <span className='ticket-price'>{formatter.format(ticket.price)}</span>                
-                <img className='ticket-company-img' alt={ticket.company.name} src={ticket.company.imageUrl}></img>
+                <img className='ticket-company-img' width={"99px"} height={"36px"} alt={ticket.company.name} src={ticket.company.imageUrl}></img>
             </div>
             <div className='ticket-segments-container'>
                 {
