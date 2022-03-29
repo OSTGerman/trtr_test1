@@ -11,8 +11,6 @@ import { Company } from './models/Company';
 import { QualityFilter } from './components/quality-filter/QualityFilter';
 import { QualityFilterValues } from './models/QualityFilterValues';
 
-let dataStore: DataStore;
-
 function App() {
 
   const [tickets, setTickets] = useState<TicketModel[]>([]);
@@ -20,17 +18,19 @@ function App() {
   const [companyId, setCompanyId] = useState<string|null>(null);
   const [selectedTransfers, setSelectedTransfers] = useState([true, true, false, false]);
   const [quality, setQuality] = useState<QualityFilterValues>('CHEAPEST');
-
-
-  useEffect(() => {
-    if (!dataStore) {
-      dataStore = new DataStore(new AviasalesTestDataProvider());
+  const [dataStore] = useState<DataStore>(new DataStore(new AviasalesTestDataProvider()));
+  const [updateCount, setUpdateCount] = useState(0);
+  
+  useEffect(() => {             
       dataStore.fetchData(() => {        
-        setCompanies(dataStore.GetCompanies());        
-      })
-    }        
+        setCompanies(dataStore.GetCompanies());
+        setUpdateCount(updateCount => updateCount + 1);
+      });  
+  }, [dataStore]);
+  
+  useEffect(() => {    
     setTickets(dataStore.GetFilteredData(selectedTransfers, companyId, quality));
-  }, [companyId, companies, selectedTransfers, quality]);
+  }, [dataStore, companyId, companies, selectedTransfers, quality, updateCount]);
 
   return (
     <div className='app'>
