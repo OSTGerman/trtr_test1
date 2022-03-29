@@ -54,7 +54,12 @@ export class DataStore {
                 const priceDiff = Math.sign(ticketA.price - ticketB.price);
                 const durationDiff = Math.sign(this.getTotalDuration(ticketA) - this.getTotalDuration(ticketB));
                 const stopsDiff = Math.sign(this.getTotalStops(ticketA) - this.getTotalStops(ticketB));
-                return priceDiff /** 1.2*/ + durationDiff + stopsDiff /** 1.1*/;
+                /* Лучшими считаем билеты: более дешевые, с меньшим общим временем полета, меньшим числом пересадок.
+                   Сейчас все компоненты вносят "равный" вклад, т.е. разница в цене на 1 р. имеет такой же вес, как 
+                   разница в 10 часов полета. TODO: проконсультироваться с бизнесом и ввести коэффициенты для разницы
+                   параметров.
+                 */
+                return priceDiff + durationDiff + stopsDiff;
                 
             default:
                 throw new Error("Unknown quality param");
